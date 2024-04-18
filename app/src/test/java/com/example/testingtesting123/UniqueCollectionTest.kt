@@ -41,4 +41,27 @@ class UniqueCollectionTest {
 
         assert(originalSize == 2 && newSize == 0) {"Items not cleared"}
     }
+
+    @Test
+    fun getAnItem() {
+        val i = Item("Item1")
+        assert(collection.get(0) == i) {"No items in list to get"}
+        collection.addItem(i)
+
+        assert(collection.get(0) == i) {"Item is retrieved properly"}
+
+        assert(collection.get(8) == i) {"Item out of bounds cannot be removed"}
+    }
+
+    @Test
+    fun removeAnItem() {
+        val i = Item("Item")
+
+        collection.addItem(i)
+        assert(collection.size() == 1) {"Item added to list"}
+        collection.remove(Item("Test"))
+        assert(collection.size() == 1) {"Wrong item not removed"}
+        collection.remove(i)
+        assert(collection.size() == 0) {"Removed item from list"}
+    }
 }
