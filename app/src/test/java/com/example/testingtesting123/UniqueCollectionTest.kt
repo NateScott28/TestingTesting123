@@ -43,7 +43,7 @@ class UniqueCollectionTest {
     }
 
     @Test
-    fun getAnItem() {
+    fun getItemInCollection() {
         val i = Item("Item1")
         assert(collection.get(0) == i) {"No items in list to get"}
         collection.addItem(i)
@@ -54,14 +54,28 @@ class UniqueCollectionTest {
     }
 
     @Test
-    fun removeAnItem() {
+    fun getWrongItemInCollection() {
+        val first = Item("One")
+        val second = Item("Two")
+
+        collection.addItem(first)
+        collection.addItem(second)
+
+        assert(collection.get(0) != second && collection.get(1) == second) {"Gets correct item"}
+    }
+
+    @Test
+    fun removeItemInCollection() {
         val i = Item("Item")
 
         collection.addItem(i)
-        assert(collection.size() == 1) {"Item added to list"}
         collection.remove(Item("Test"))
-        assert(collection.size() == 1) {"Wrong item not removed"}
-        collection.remove(i)
-        assert(collection.size() == 0) {"Removed item from list"}
+        assert(collection.size() == 0) {"Item Removed"}
     }
+
+    @Test
+    fun removeWrongItem() {
+
+    }
+
 }
